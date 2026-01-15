@@ -1,0 +1,9 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/[locale]/review-calculator/page": "app/[locale]/review-calculator/page.js",
+  "/[locale]/preventivi/crea-offerta/page": "app/[locale]/preventivi/crea-offerta/page.js",
+  "/[locale]/coral-bay/page": "app/[locale]/coral-bay/page.js",
+  "/[locale]/cura-farma/page": "app/[locale]/cura-farma/page.js",
+  "/[locale]/page": "app/[locale]/page.js",
+  "/[locale]/augusto-abbigliamento/page": "app/[locale]/augusto-abbigliamento/page.js"
+}

@@ -23,7 +23,11 @@
     "createQuote": "Angebot Erstellen",
     "sendcloudAdmin": "Sendcloud Admin",
     "supportAutomation": "Support Automation",
-    "discountCalculator": "Rabattrechner"
+    "discountCalculator": "Rabattrechner",
+    "analytics": "Analytics",
+    "performance": "Performance",
+    "transitTimes": "Transitzeiten",
+    "exceptions": "Ausnahmen"
   },
   "common": {
     "backToCaseStudies": "Zurück zu Fallstudien",

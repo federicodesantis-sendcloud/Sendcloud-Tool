@@ -23,7 +23,11 @@
     "createQuote": "Offerte Aanmaken",
     "sendcloudAdmin": "Sendcloud Admin",
     "supportAutomation": "Support Automation",
-    "discountCalculator": "Kortingscalculator"
+    "discountCalculator": "Kortingscalculator",
+    "analytics": "Analytics",
+    "performance": "Prestaties",
+    "transitTimes": "Transittijden",
+    "exceptions": "Uitzonderingen"
   },
   "common": {
     "backToCaseStudies": "Terug naar case studies",

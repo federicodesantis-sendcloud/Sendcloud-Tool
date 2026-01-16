@@ -23,7 +23,11 @@
     "createQuote": "Créer un Devis",
     "sendcloudAdmin": "Sendcloud Admin",
     "supportAutomation": "Support Automation",
-    "discountCalculator": "Calculateur de Réduction"
+    "discountCalculator": "Calculateur de Réduction",
+    "analytics": "Analytics",
+    "performance": "Performance",
+    "transitTimes": "Temps de Transit",
+    "exceptions": "Exceptions"
   },
   "common": {
     "backToCaseStudies": "Retour aux études de cas",

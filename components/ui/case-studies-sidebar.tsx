@@ -19,6 +19,7 @@ import {
   Calculator,
   Headphones,
   Percent,
+  BarChart3,
 } from "lucide-react"
 
 import {
@@ -55,6 +56,50 @@ export function CaseStudiesSidebar() {
   }
 
   const supportAutomationUrl = supportAutomationLinks[locale] || supportAutomationLinks['en']
+
+  // Returns Portal links by locale
+  const returnsPortalLinks: Record<string, string> = {
+    it: 'https://plant.shipping-portal.com/rp/',
+    nl: 'https://sendcloud.navattic.com/uqi0ooj?lang=nl',
+    fr: 'https://sendcloud.navattic.com/uqi0ooj?lang=fr',
+    de: 'https://sendcloud.navattic.com/uqi0ooj?lang=de',
+    es: 'https://sendcloud.navattic.com/uqi0ooj?lang=es',
+    en: 'https://plant.shipping-portal.com/rp/items',
+  }
+
+  const returnsPortalUrl = returnsPortalLinks[locale] || returnsPortalLinks['en']
+
+  // Analytics links by locale
+  const analyticsLinks = {
+    performance: {
+      it: 'https://sendcloud.navattic.com/ejk0ai3?lang=it',
+      es: 'https://sendcloud.navattic.com/ejk0ai3?lang=es',
+      fr: 'https://sendcloud.navattic.com/ejk0ai3?lang=fr',
+      de: 'https://sendcloud.navattic.com/ejk0ai3?lang=de',
+      nl: 'https://sendcloud.navattic.com/ejk0ai3?lang=nl',
+      en: 'https://sendcloud.navattic.com/ejk0ai3?lang=en',
+    },
+    transitTimes: {
+      nl: 'https://sendcloud.navattic.com/bbak054z?lang=nl',
+      de: 'https://sendcloud.navattic.com/bbak054z?lang=de',
+      fr: 'https://sendcloud.navattic.com/bbak054z?lang=fr',
+      es: 'https://sendcloud.navattic.com/bbak054z?lang=es',
+      it: 'https://sendcloud.navattic.com/bbak054z?lang=it',
+      en: 'https://sendcloud.navattic.com/bbak054z?lang=en',
+    },
+    exceptions: {
+      nl: 'https://sendcloud.navattic.com/k8r05j7?lang=nl',
+      de: 'https://sendcloud.navattic.com/k8r05j7?lang=de',
+      fr: 'https://sendcloud.navattic.com/k8r05j7?lang=fr',
+      es: 'https://sendcloud.navattic.com/k8r05j7?lang=es',
+      it: 'https://sendcloud.navattic.com/k8r05j7?lang=it',
+      en: 'https://sendcloud.navattic.com/k8r05j7?lang=en',
+    },
+  }
+
+  const performanceUrl = analyticsLinks.performance[locale as keyof typeof analyticsLinks.performance] || analyticsLinks.performance.en
+  const transitTimesUrl = analyticsLinks.transitTimes[locale as keyof typeof analyticsLinks.transitTimes] || analyticsLinks.transitTimes.en
+  const exceptionsUrl = analyticsLinks.exceptions[locale as keyof typeof analyticsLinks.exceptions] || analyticsLinks.exceptions.en
 
   const categories = [
     {
@@ -222,15 +267,54 @@ export function CaseStudiesSidebar() {
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
+            <Collapsible className="w-full">
+              <CollapsibleTrigger className="w-full">
+                <SidebarMenuButton
+                  tooltip={t('analytics')}
+                  className="w-full text-white hover:bg-[#0c2a6a] hover:text-white"
+                >
+                  <BarChart3 className="text-white" />
+                  <span>{t('analytics')}</span>
+                  <ChevronDown className="ml-auto h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180 text-white" />
+                </SidebarMenuButton>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <SidebarMenuSub>
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
+                      <a href={performanceUrl} target="_blank" rel="noopener noreferrer">
+                        {t('performance')}
+                      </a>
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
+                      <a href={transitTimesUrl} target="_blank" rel="noopener noreferrer">
+                        {t('transitTimes')}
+                      </a>
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                  <SidebarMenuSubItem>
+                    <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
+                      <a href={exceptionsUrl} target="_blank" rel="noopener noreferrer">
+                        {t('exceptions')}
+                      </a>
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                </SidebarMenuSub>
+              </CollapsibleContent>
+            </Collapsible>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
             <SidebarMenuButton
               asChild
               tooltip={t('returnsPortal')}
               className="text-white hover:bg-[#0c2a6a] hover:text-white"
             >
-              <Link href="https://plant.shipping-portal.com/rp/items" target="_blank" rel="noopener noreferrer">
+              <a href={returnsPortalUrl} target="_blank" rel="noopener noreferrer">
                 <RefreshCcw className="text-white" />
                 <span>{t('returnsPortal')}</span>
-              </Link>
+              </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>

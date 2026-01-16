@@ -23,7 +23,11 @@
     "createQuote": "Create Quote",
     "sendcloudAdmin": "Sendcloud Admin",
     "supportAutomation": "Support Automation",
-    "discountCalculator": "Discount Calculator"
+    "discountCalculator": "Discount Calculator",
+    "analytics": "Analytics",
+    "performance": "Performance",
+    "transitTimes": "Transit Times",
+    "exceptions": "Exceptions"
   },
   "common": {
     "backToCaseStudies": "Back to case studies",

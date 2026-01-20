@@ -244,6 +244,16 @@ export default function CoralBayCaseStudy() {
                   <span className="text-white">{tCommon('theChallenge')}</span>{" "}
                   <span className="text-[#3db4d2]">{tCommon('beforeSendcloud')}</span>
                 </h2>
+                <div className="relative mb-6">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#3db4d2]/30 to-[#3db4d2]/10 rounded-xl blur-sm"></div>
+                  <Image
+                    src="/images/coral-bay-website.png"
+                    alt="Coral Bay review form on the website"
+                    width={600}
+                    height={400}
+                    className="w-full rounded-lg shadow-lg relative"
+                  />
+                </div>
                 <p className="text-white leading-relaxed text-lg">
                   {t('challengeText1')}
                 </p>

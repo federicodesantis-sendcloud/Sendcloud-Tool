@@ -6,6 +6,7 @@
   },
   "sidebar": {
     "home": "Home",
+    "caseStudies": "Case Studies",
     "categories": "Categorieën",
     "animals": "Dieren",
     "pharmacy": "Apotheek",
@@ -27,7 +28,9 @@
     "analytics": "Analytics",
     "performance": "Prestaties",
     "transitTimes": "Transittijden",
-    "exceptions": "Uitzonderingen"
+    "exceptions": "Uitzonderingen",
+    "resources": "Bronnen",
+    "features": "Functies"
   },
   "common": {
     "backToCaseStudies": "Terug naar case studies",

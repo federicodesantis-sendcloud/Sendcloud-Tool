@@ -6,6 +6,7 @@
   },
   "sidebar": {
     "home": "Startseite",
+    "caseStudies": "Fallstudien",
     "categories": "Kategorien",
     "animals": "Tiere",
     "pharmacy": "Apotheke",
@@ -27,7 +28,9 @@
     "analytics": "Analytics",
     "performance": "Performance",
     "transitTimes": "Transitzeiten",
-    "exceptions": "Ausnahmen"
+    "exceptions": "Ausnahmen",
+    "resources": "Ressourcen",
+    "features": "Funktionen"
   },
   "common": {
     "backToCaseStudies": "Zurück zu Fallstudien",

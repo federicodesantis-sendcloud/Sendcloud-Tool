@@ -6,6 +6,7 @@
   },
   "sidebar": {
     "home": "Home",
+    "caseStudies": "Case Studies",
     "categories": "Categories",
     "animals": "Animals",
     "pharmacy": "Pharmacy",
@@ -27,7 +28,9 @@
     "analytics": "Analytics",
     "performance": "Performance",
     "transitTimes": "Transit Times",
-    "exceptions": "Exceptions"
+    "exceptions": "Exceptions",
+    "resources": "Resources",
+    "features": "Features"
   },
   "common": {
     "backToCaseStudies": "Back to case studies",

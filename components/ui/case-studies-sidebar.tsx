@@ -12,7 +12,6 @@ import {
   Palette,
   Pill,
   Shirt,
-  User2,
   Truck,
   RefreshCcw,
   CreditCard,
@@ -20,6 +19,8 @@ import {
   Headphones,
   Percent,
   BarChart3,
+  Folder,
+  Sparkles,
 } from "lucide-react"
 
 import {
@@ -196,7 +197,7 @@ export function CaseStudiesSidebar() {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel className="text-[#3db4d2]">{t('categories')}</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-[#3db4d2]">{t('caseStudies')}</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {categories.map((category) => {
@@ -242,142 +243,148 @@ export function CaseStudiesSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <div className="h-px bg-[#3db4d2]/30 my-2" />
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <Collapsible className="w-full">
+                  <CollapsibleTrigger className="w-full">
+                    <SidebarMenuButton
+                      tooltip={t('resources')}
+                      className="w-full text-white hover:bg-[#0c2a6a] hover:text-white"
+                    >
+                      <Folder className="text-white" />
+                      <span>{t('resources')}</span>
+                      <ChevronDown className="ml-auto h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180 text-white" />
+                    </SidebarMenuButton>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
+                          <Link href="/pricing">
+                            <CreditCard className="text-white" />
+                            <span>{t('pricing')}</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
+                          <Link href="/review-calculator">
+                            <Calculator className="text-white" />
+                            <span>{t('whatsappCalculator')}</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
+                          <a href="https://prod.dnbgs18fjl3ig.amplifyapp.com/" target="_blank" rel="noopener noreferrer">
+                            <Percent className="text-white" />
+                            <span>{t('discountCalculator')}</span>
+                          </a>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
+                          <Link href="/preventivi/crea-offerta">
+                            <FileText className="text-white" />
+                            <span>{t('createQuote')}</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </Collapsible>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <Collapsible className="w-full">
+                  <CollapsibleTrigger className="w-full">
+                    <SidebarMenuButton
+                      tooltip={t('features')}
+                      className="w-full text-white hover:bg-[#0c2a6a] hover:text-white"
+                    >
+                      <Sparkles className="text-white" />
+                      <span>{t('features')}</span>
+                      <ChevronDown className="ml-auto h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180 text-white" />
+                    </SidebarMenuButton>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      <SidebarMenuSubItem>
+                        <Collapsible className="w-full">
+                          <CollapsibleTrigger className="w-full">
+                            <SidebarMenuSubButton
+                              tooltip={t('analytics')}
+                              className="w-full text-white hover:bg-[#0c2a6a] hover:text-white"
+                            >
+                              <BarChart3 className="text-white" />
+                              <span>{t('analytics')}</span>
+                              <ChevronDown className="ml-auto h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180 text-white" />
+                            </SidebarMenuSubButton>
+                          </CollapsibleTrigger>
+                          <CollapsibleContent>
+                            <SidebarMenuSub>
+                              <SidebarMenuSubItem>
+                                <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
+                                  <a href={performanceUrl} target="_blank" rel="noopener noreferrer">
+                                    {t('performance')}
+                                  </a>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                              <SidebarMenuSubItem>
+                                <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
+                                  <a href={transitTimesUrl} target="_blank" rel="noopener noreferrer">
+                                    {t('transitTimes')}
+                                  </a>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                              <SidebarMenuSubItem>
+                                <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
+                                  <a href={exceptionsUrl} target="_blank" rel="noopener noreferrer">
+                                    {t('exceptions')}
+                                  </a>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                            </SidebarMenuSub>
+                          </CollapsibleContent>
+                        </Collapsible>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
+                          <a href={returnsPortalUrl} target="_blank" rel="noopener noreferrer">
+                            <RefreshCcw className="text-white" />
+                            <span>{t('returnsPortal')}</span>
+                          </a>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
+                          <Link href="/tracking-page">
+                            <Truck className="text-white" />
+                            <span>{t('trackingPage')}</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
+                          <a href={supportAutomationUrl} target="_blank" rel="noopener noreferrer">
+                            <Headphones className="text-white" />
+                            <span>{t('supportAutomation')}</span>
+                          </a>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </Collapsible>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
 
       <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              tooltip={t('whatsappCalculator')}
-              className="text-white hover:bg-[#0c2a6a] hover:text-white"
-            >
-              <Link href="/review-calculator">
-                <Calculator className="text-white" />
-                <span>{t('whatsappCalculator')}</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip={t('pricing')} className="text-white hover:bg-[#0c2a6a] hover:text-white">
-              <Link href="/pricing">
-                <CreditCard className="text-white" />
-                <span>{t('pricing')}</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <Collapsible className="w-full">
-              <CollapsibleTrigger className="w-full">
-                <SidebarMenuButton
-                  tooltip={t('analytics')}
-                  className="w-full text-white hover:bg-[#0c2a6a] hover:text-white"
-                >
-                  <BarChart3 className="text-white" />
-                  <span>{t('analytics')}</span>
-                  <ChevronDown className="ml-auto h-4 w-4 shrink-0 transition-transform duration-200 group-data-[state=open]:rotate-180 text-white" />
-                </SidebarMenuButton>
-              </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarMenuSub>
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
-                      <a href={performanceUrl} target="_blank" rel="noopener noreferrer">
-                        {t('performance')}
-                      </a>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
-                      <a href={transitTimesUrl} target="_blank" rel="noopener noreferrer">
-                        {t('transitTimes')}
-                      </a>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-                  <SidebarMenuSubItem>
-                    <SidebarMenuSubButton asChild className="text-white hover:bg-[#0c2a6a] hover:text-white">
-                      <a href={exceptionsUrl} target="_blank" rel="noopener noreferrer">
-                        {t('exceptions')}
-                      </a>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-                </SidebarMenuSub>
-              </CollapsibleContent>
-            </Collapsible>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              tooltip={t('returnsPortal')}
-              className="text-white hover:bg-[#0c2a6a] hover:text-white"
-            >
-              <a href={returnsPortalUrl} target="_blank" rel="noopener noreferrer">
-                <RefreshCcw className="text-white" />
-                <span>{t('returnsPortal')}</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              tooltip={t('trackingPage')}
-              className="text-white hover:bg-[#0c2a6a] hover:text-white"
-            >
-              <Link href="/tracking-page">
-                <Truck className="text-white" />
-                <span>{t('trackingPage')}</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              tooltip={t('createQuote')}
-              className="text-white hover:bg-[#0c2a6a] hover:text-white"
-            >
-              <Link href="/preventivi/crea-offerta">
-                <FileText className="text-white" />
-                <span>{t('createQuote')}</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              tooltip={t('supportAutomation')}
-              className="text-white hover:bg-[#0c2a6a] hover:text-white"
-            >
-              <a href={supportAutomationUrl} target="_blank" rel="noopener noreferrer">
-                <Headphones className="text-white" />
-                <span>{t('supportAutomation')}</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              tooltip={t('discountCalculator')}
-              className="text-white hover:bg-[#0c2a6a] hover:text-white"
-            >
-              <a href="https://prod.dnbgs18fjl3ig.amplifyapp.com/" target="_blank" rel="noopener noreferrer">
-                <Percent className="text-white" />
-                <span>{t('discountCalculator')}</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip={t('sendcloudAdmin')} className="text-white hover:bg-[#0c2a6a] hover:text-white">
-              <Link
-                href="https://eu-central-1-0.app.sendcloud.com/admin-ng/users/user/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <User2 className="text-white" />
-                <span>{t('sendcloudAdmin')}</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
       </SidebarFooter>
     </Sidebar>
   )

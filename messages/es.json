@@ -6,6 +6,7 @@
   },
   "sidebar": {
     "home": "Inicio",
+    "caseStudies": "Casos de Estudio",
     "categories": "Categorías",
     "animals": "Animales",
     "pharmacy": "Farmacia",
@@ -27,7 +28,9 @@
     "analytics": "Analytics",
     "performance": "Rendimiento",
     "transitTimes": "Tiempos de Tránsito",
-    "exceptions": "Excepciones"
+    "exceptions": "Excepciones",
+    "resources": "Recursos",
+    "features": "Características"
   },
   "common": {
     "backToCaseStudies": "Volver a estudios de caso",

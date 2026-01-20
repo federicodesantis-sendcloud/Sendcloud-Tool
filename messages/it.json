@@ -6,6 +6,7 @@
   },
   "sidebar": {
     "home": "Home",
+    "caseStudies": "Case Studies",
     "categories": "Categorie",
     "animals": "Animali",
     "pharmacy": "Farmacia",
@@ -27,7 +28,9 @@
     "analytics": "Analytics",
     "performance": "Performance",
     "transitTimes": "Transit Times",
-    "exceptions": "Exceptions"
+    "exceptions": "Exceptions",
+    "resources": "Resources",
+    "features": "Features"
   },
   "common": {
     "backToCaseStudies": "Torna ai case study",

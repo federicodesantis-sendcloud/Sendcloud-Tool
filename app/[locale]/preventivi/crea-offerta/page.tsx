@@ -149,7 +149,48 @@ export default function CreateOfferPage() {
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-Q9BFgCnG6Q20iBoQfGmNY3gfqQGZWG.png",
     },
   ]
-  const [selectedFeatures, setSelectedFeatures] = useState<string[]>(features.map((feature) => feature.id))
+  const getDefaultFeatureIds = (plan: keyof typeof standardPlans) => {
+    const liteDefaults = [
+      "integrazione-negozi",
+      "integrazione-corrieri",
+      "tariffe-agevolate",
+      "stampa-etichette",
+      "email-tracking",
+      "whatsapp-tracking",
+      "mappa-pudo",
+      "assicurazione-xcover",
+    ]
+
+    if (plan === "growth") {
+      return [
+        ...liteDefaults,
+        "pack-and-go",
+        "pagina-tracking",
+        "whatsapp-marketing",
+      ]
+    }
+
+    if (plan === "premium") {
+      return [
+        ...liteDefaults,
+        "pack-and-go",
+        "pagina-tracking",
+        "whatsapp-marketing",
+        "monitoraggio-spedizioni",
+        "portale-resi",
+      ]
+    }
+
+    if (plan === "pro") {
+      return features.map((feature) => feature.id)
+    }
+
+    return liteDefaults
+  }
+
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>(
+    getDefaultFeatureIds("lite"),
+  )
   const [expandedFeatures, setExpandedFeatures] = useState<Record<string, boolean>>({})
   const [editedFeatureTexts, setEditedFeatureTexts] = useState<Record<string, string>>({})
   const [featuresOrder, setFeaturesOrder] = useState<string[]>(features.map((feature) => feature.id))
@@ -1417,6 +1458,7 @@ document.addEventListener('DOMContentLoaded', function() {
         perLabelFee: newPerLabelFee,
       }
     })
+    setSelectedFeatures(getDefaultFeatureIds(plan))
   }
 
   const handleShowMonthlyChange = (e: React.ChangeEvent<HTMLInputElement>) => {

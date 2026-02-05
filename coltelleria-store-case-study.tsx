@@ -2,11 +2,12 @@
 
 import Image from "next/image"
 import { Card } from "@/components/ui/card"
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 export default function ColtelleriaStoreCaseStudy() {
   const t = useTranslations('coltelleriaStore')
   const tCommon = useTranslations('common')
+  const locale = useLocale()
   return (
     <div className="min-h-screen bg-[#0a1e4d] text-white p-4 md:p-8 lg:p-12 relative overflow-hidden">
       {/* Background decorative elements */}
@@ -226,7 +227,11 @@ export default function ColtelleriaStoreCaseStudy() {
               </div>
               <div>
                 <Image
-                  src="/images/coltelleria-whatsapp.png"
+                  src={
+                    locale === "en"
+                      ? "/images/coltelleria-whatsapp-map-en.png"
+                      : "/images/coltelleria-whatsapp.png"
+                  }
                   alt="Messaggio WhatsApp di Coltelleria Store"
                   width={600}
                   height={400}
@@ -252,7 +257,11 @@ export default function ColtelleriaStoreCaseStudy() {
               </div>
               <div>
                 <Image
-                  src="/images/coltelleria-whatsapp.png"
+                  src={
+                    locale === "en"
+                      ? "/images/coltelleria-whatsapp-template-en.png"
+                      : "/images/coltelleria-whatsapp.png"
+                  }
                   alt="Messaggio WhatsApp di Coltelleria Store"
                   width={600}
                   height={600}

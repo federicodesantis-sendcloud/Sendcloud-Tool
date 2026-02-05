@@ -327,7 +327,7 @@ export default function CuraFarmaCaseStudy() {
               <div className="relative mt-8">
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#3db4d2]/30 to-[#3db4d2]/10 rounded-xl blur-sm"></div>
                 <Image
-                  src={getLocalizedImage('cura-farma-reviews-chart.png', locale)}
+                  src={getLocalizedImage('cura-farma-exponential-growth.png', locale)}
                   alt="Cura Farma growth chart"
                   width={800}
                   height={400}

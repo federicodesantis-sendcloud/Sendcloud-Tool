@@ -339,8 +339,8 @@ export default function CoralBayCaseStudy() {
               <div className="relative mt-8">
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#3db4d2]/30 to-[#3db4d2]/10 rounded-xl blur-sm"></div>
                 <Image
-                  src="/images/coral-bay-conversion-chart.png"
-                  alt="Grafico di crescita delle recensioni di Coral Bay"
+                  src={getLocalizedImage('coral-bay-conversion-chart.png', locale)}
+                  alt="Coral Bay conversion rate chart"
                   width={800}
                   height={400}
                   className="w-full rounded-lg shadow-lg relative"

@@ -4,11 +4,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, BarChart3, MessageCircle, Star, TrendingUp, Users } from "lucide-react"
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
+import { getLocalizedImage } from '@/lib/utils'
 
 export default function LaScarpoLogaCaseStudy() {
   const t = useTranslations('laScarpologa')
   const tCommon = useTranslations('common')
+  const locale = useLocale()
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0a1e4d] to-[#081638] text-white relative overflow-hidden">
       {/* Background decorative elements */}
@@ -298,8 +300,8 @@ export default function LaScarpoLogaCaseStudy() {
                 <div className="relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#3db4d2]/30 to-[#3db4d2]/10 rounded-xl blur-sm"></div>
                   <Image
-                    src="/images/la-scarpologa-whatsapp-review.png"
-                    alt="La Scarpologa WhatsApp message for reviews"
+                    src={getLocalizedImage('la-scarpologa-whatsapp-review.png', locale)}
+                    alt="La Scarpologa WhatsApp review message"
                     width={600}
                     height={600}
                     className="w-full rounded-lg shadow-lg relative"
@@ -390,8 +392,8 @@ export default function LaScarpoLogaCaseStudy() {
               <div className="relative mx-auto max-w-3xl">
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#3db4d2]/30 to-[#3db4d2]/10 rounded-xl blur-sm"></div>
                 <Image
-                  src="/images/la-scarpologa-results.png"
-                  alt="La Scarpologa WhatsApp campaign results"
+                  src={getLocalizedImage('la-scarpologa-results.png', locale)}
+                  alt="La Scarpologa campaign results"
                   width={700}
                   height={400}
                   className="w-full rounded-lg shadow-lg relative"

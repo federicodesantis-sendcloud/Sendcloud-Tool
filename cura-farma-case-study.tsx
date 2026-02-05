@@ -4,11 +4,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowLeft, BarChart3, MessageCircle, Star, TrendingUp, Users, Pill } from "lucide-react"
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
+import { getLocalizedImage } from '@/lib/utils'
 
 export default function CuraFarmaCaseStudy() {
   const t = useTranslations('curaFarma')
   const tCommon = useTranslations('common')
+  const locale = useLocale()
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0a1e4d] to-[#081638] text-white relative overflow-hidden">
       {/* Background decorative elements */}
@@ -325,8 +327,8 @@ export default function CuraFarmaCaseStudy() {
               <div className="relative mt-8">
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#3db4d2]/30 to-[#3db4d2]/10 rounded-xl blur-sm"></div>
                 <Image
-                  src="/images/cura-farma-reviews-chart.png"
-                  alt="Grafico di crescita delle recensioni di Cura Farma"
+                  src={getLocalizedImage('cura-farma-reviews-chart.png', locale)}
+                  alt="Cura Farma growth chart"
                   width={800}
                   height={400}
                   className="w-full rounded-lg shadow-lg relative"

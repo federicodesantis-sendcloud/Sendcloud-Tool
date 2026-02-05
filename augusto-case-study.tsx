@@ -4,11 +4,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/card"
 import { ArrowLeft, ArrowRight, BarChart3, MessageCircle, Star, TrendingUp } from "lucide-react"
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
+import { getLocalizedImage } from '@/lib/utils'
 
 export default function AugustoCaseStudy() {
   const t = useTranslations('augustoAbbigliamento')
   const tCommon = useTranslations('common')
+  const locale = useLocale()
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#0a1e4d] to-[#081638] text-white relative overflow-hidden">
       {/* Background decorative elements */}
@@ -232,8 +234,8 @@ export default function AugustoCaseStudy() {
               <div className="relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#3db4d2]/30 to-[#3db4d2]/10 rounded-xl blur-sm"></div>
                 <Image
-                  src="/images/augusto-whatsapp-message.png"
-                  alt="Messaggio WhatsApp di Augusto Abbigliamento"
+                  src={getLocalizedImage('augusto-whatsapp-message.png', locale)}
+                  alt="Augusto Abbigliamento WhatsApp message"
                   width={500}
                   height={600}
                   className="w-full rounded-lg shadow-lg relative"

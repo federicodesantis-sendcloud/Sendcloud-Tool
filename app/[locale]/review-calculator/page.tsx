@@ -17,7 +17,6 @@ import {
   Star,
   Gift,
   Euro,
-  Heart,
   ShoppingCart,
   Shield,
   ExternalLink,
@@ -37,7 +36,6 @@ export default function ReviewCalculatorPage() {
   // Business objectives state
   const [objectives, setObjectives] = useState({
     deliveryIncidents: true,
-    customerLoyalty: true,
     secondPurchases: true,
     reviewCollection: true,
   })
@@ -102,15 +100,15 @@ export default function ReviewCalculatorPage() {
       messages.push({ type: "review", name: t('reviewRequest'), required: false })
     }
 
-    // Add retention message if customer loyalty OR second purchases is selected
-    if (objectives.customerLoyalty || objectives.secondPurchases) {
+    // Add retention message if second purchases is selected
+    if (objectives.secondPurchases) {
       messages.push({ type: "retention", name: t('customerRetention'), required: false })
     }
 
     // If no delivery incidents selected but other objectives are, still include basic tracking
     if (
       !objectives.deliveryIncidents &&
-      (objectives.reviewCollection || objectives.customerLoyalty || objectives.secondPurchases)
+      (objectives.reviewCollection || objectives.secondPurchases)
     ) {
       messages.unshift({ type: "tracking", name: t('orderTracking'), required: true })
     }
@@ -123,7 +121,7 @@ export default function ReviewCalculatorPage() {
   const totalMessagesMonthly = monthlyOrders * totalMessagesPerOrder
   const totalMessagesAnnual = totalMessagesMonthly * 12
 
-  const whatsappCostPerMessage = 0.12 // 0.12 euros per message
+  const whatsappCostPerMessage = 0.1 // 0.10 euros per message
   const whatsappCostMonthly = totalMessagesMonthly * whatsappCostPerMessage
   const whatsappCostAnnual = whatsappCostMonthly * 12
 
@@ -138,6 +136,7 @@ export default function ReviewCalculatorPage() {
   // Sales conversions from coupons
   const couponConversionsMonthly = Math.round((monthlyOrders * currentVertical.coupon) / 100)
   const couponConversionsAnnual = couponConversionsMonthly * 12
+
 
   // Business Impact Calculations
   const getBusinessImpact = (reviews: number) => {
@@ -214,7 +213,6 @@ export default function ReviewCalculatorPage() {
   const getObjectiveDescription = () => {
     const selectedObjectives = []
     if (objectives.deliveryIncidents) selectedObjectives.push(t('deliveryIncidents'))
-    if (objectives.customerLoyalty) selectedObjectives.push(t('customerLoyalty'))
     if (objectives.secondPurchases) selectedObjectives.push(t('secondPurchases'))
     if (objectives.reviewCollection) selectedObjectives.push(t('reviewCollection'))
 
@@ -426,21 +424,6 @@ export default function ReviewCalculatorPage() {
 
                       <div className="flex items-center space-x-4 p-4 rounded-xl bg-white/5 border border-white/10">
                         <Checkbox
-                          id="customerLoyalty"
-                          checked={objectives.customerLoyalty}
-                          onCheckedChange={() => handleObjectiveChange("customerLoyalty")}
-                          className="w-6 h-6 border-2 border-white/30 data-[state=checked]:bg-[#3DB4D2] data-[state=checked]:border-[#3DB4D2]"
-                        />
-                        <div className="flex items-center">
-                          <Heart className="w-5 h-5 mr-2 text-red-400" />
-                          <label htmlFor="customerLoyalty" className="text-white font-medium cursor-pointer">
-                            {t('customerLoyalty')}
-                          </label>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center space-x-4 p-4 rounded-xl bg-white/5 border border-white/10">
-                        <Checkbox
                           id="secondPurchases"
                           checked={objectives.secondPurchases}
                           onCheckedChange={() => handleObjectiveChange("secondPurchases")}
@@ -514,7 +497,11 @@ export default function ReviewCalculatorPage() {
                 </div>
 
                 {/* Message Bundle and Investment - Side by Side Layout */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div
+                  className={`grid grid-cols-1 ${
+                    objectives.secondPurchases ? "lg:grid-cols-2" : ""
+                  } gap-12 items-start`}
+                >
                   {/* Message Carousel - Left Side */}
                   <div className="relative">
                     {/* Current Message Display */}
@@ -733,29 +720,31 @@ export default function ReviewCalculatorPage() {
                   </div>
 
                   {/* Monthly Investment Summary - Right Side */}
-                  <div className="lg:sticky lg:top-8 mt-8">
-                    <div className="bg-gradient-to-br from-green-500/20 to-green-500/5 backdrop-blur-xl rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(34,197,94,0.3)] border border-green-500/30">
-                      <div className="bg-gradient-to-r from-green-500/30 to-green-500/20 p-8 border-b border-green-500/20">
-                        <div className="flex items-center justify-center">
-                          <Euro className="w-8 h-8 mr-3 text-green-400" />
-                          <h3 className="text-3xl font-bold text-white">{t('monthlyInvestment')}</h3>
+                  {objectives.secondPurchases && (
+                    <div className="lg:sticky lg:top-8 mt-8">
+                      <div className="bg-gradient-to-br from-green-500/20 to-green-500/5 backdrop-blur-xl rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(34,197,94,0.3)] border border-green-500/30">
+                        <div className="bg-gradient-to-r from-green-500/30 to-green-500/20 p-8 border-b border-green-500/20">
+                          <div className="flex items-center justify-center">
+                            <Euro className="w-8 h-8 mr-3 text-green-400" />
+                            <h3 className="text-3xl font-bold text-white">{t('monthlyInvestment')}</h3>
+                          </div>
                         </div>
-                      </div>
-                      <div className="p-10">
-                        <div className="text-center">
-                          <div className="text-6xl font-bold text-green-400 mb-4">
-                            €{whatsappCostMonthly.toLocaleString()}
-                          </div>
-                          <div className="text-xl text-green-300 mb-6">
-                            {t('forMessages', { count: totalMessagesMonthly.toLocaleString() })}
-                          </div>
-                          <div className="text-xl text-white/80">
-                            {t('perMessage', { count: totalMessagesPerOrder })}
+                        <div className="p-10">
+                          <div className="text-center">
+                            <div className="text-6xl font-bold text-green-400 mb-4">
+                              €{whatsappCostMonthly.toLocaleString()}
+                            </div>
+                            <div className="text-xl text-green-300 mb-6">
+                              {t('forMessages', { count: totalMessagesMonthly.toLocaleString() })}
+                            </div>
+                            <div className="text-xl text-white/80">
+                              {t('perMessage', { count: totalMessagesPerOrder })}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
 

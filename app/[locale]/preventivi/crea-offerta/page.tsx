@@ -965,23 +965,23 @@ document.addEventListener('DOMContentLoaded', function() {
             return `
     <div class="pricing-blocks">
       <div class="pricing-block">
-        <div class="pricing-block-title">Mensile</div>
-        <div class="pricing-highlight">€${monthlyPrice}/mese</div>
+      <div class="pricing-block-title">${t('monthlyLabel')}</div>
+      <div class="pricing-highlight">€${monthlyPrice}${t('perMonth')}</div>
         <div class="pricing-details">
           <ul>
-            <li>Cost per label: <strong>€${plan.perLabel.toFixed(2)}</strong></li>
-            <li><strong>${plan.whatsappIncluded} WhatsApp/mese inclusi</strong></li>
+          <li>${t('costPerLabelShort')}: <strong>€${plan.perLabel.toFixed(2)}</strong></li>
+          <li><strong>${t('whatsappIncludedMonthly', { count: plan.whatsappIncluded })}</strong></li>
           </ul>
         </div>
       </div>
       <div class="pricing-block annual">
-        <div class="pricing-block-title">Annuale</div>
-        <div class="pricing-highlight">€${annualMonthlyPrice}/mese</div>
-        <div class="savings-badge">💰 Risparmi ${savings}%</div>
+      <div class="pricing-block-title">${t('annualLabel')}</div>
+      <div class="pricing-highlight">€${annualMonthlyPrice}${t('perMonth')}</div>
+      <div class="savings-badge">💰 ${t('savings', { rate: savings })}</div>
         <div class="pricing-details">
           <ul>
-            <li>Cost per label: <strong>€${plan.perLabelAnnual.toFixed(2)}</strong></li>
-            <li><strong>${plan.whatsappIncluded * 12} WhatsApp inclusi</strong></li>
+          <li>${t('costPerLabelShort')}: <strong>€${plan.perLabelAnnual.toFixed(2)}</strong></li>
+          <li><strong>${t('whatsappIncludedAnnual', { count: plan.whatsappIncluded * 12 })}</strong></li>
           </ul>
         </div>
       </div>
@@ -993,12 +993,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const plan = standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans]
             return `
     <div style="margin: 15px 0;">
-      <div class="pricing-highlight">€${plan.monthly}/mese</div>
+      <div class="pricing-highlight">€${plan.monthly}${t('perMonth')}</div>
     </div>
     <div class="pricing-details">
       <ul>
-        <li>Cost per label: <strong>€${plan.perLabel.toFixed(2)}</strong></li>
-        <li><strong>${plan.whatsappIncluded} WhatsApp/mese inclusi</strong> nell'abbonamento</li>
+        <li>${t('costPerLabelShort')}: <strong>€${plan.perLabel.toFixed(2)}</strong></li>
+        <li><strong>${t('whatsappIncludedMonthly', { count: plan.whatsappIncluded })}</strong> ${t('includedInSubscription')}</li>
       </ul>
     </div>
     `
@@ -1009,12 +1009,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const annualMonthlyPrice = plan.annual / 12
             return `
     <div style="margin: 15px 0;">
-      <div class="pricing-highlight">€${annualMonthlyPrice}/mese</div>
+      <div class="pricing-highlight">€${annualMonthlyPrice}${t('perMonth')}</div>
     </div>
     <div class="pricing-details">
       <ul>
-        <li>Cost per label: <strong>€${plan.perLabelAnnual.toFixed(2)}</strong></li>
-        <li><strong>${plan.whatsappIncluded * 12} WhatsApp inclusi</strong> nell'abbonamento annuale</li>
+        <li>${t('costPerLabelShort')}: <strong>€${plan.perLabelAnnual.toFixed(2)}</strong></li>
+        <li><strong>${t('whatsappIncludedAnnual', { count: plan.whatsappIncluded * 12 })}</strong> ${t('includedInAnnualSubscription')}</li>
       </ul>
     </div>
     `

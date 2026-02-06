@@ -332,25 +332,29 @@
       "name": "Lite",
       "description": "Per chi gestisce un e-commerce",
       "subDescription": "e vuole centralizzare tutte le spedizioni in un unico posto.",
-      "shipmentsLabel": "fino a 400 spedizioni/mese"
+      "shipmentsLabel": "fino a 400 spedizioni/mese",
+      "whatsappIncluded": "100 WhatsApp inclusi al mese"
     },
     "growth": {
       "name": "Growth",
       "description": "Per e-commerce in crescita",
       "subDescription": "che vogliono automatizzare le spedizioni e migliorare l'esperienza post-acquisto.",
-      "shipmentsLabel": "fino a 1000"
+      "shipmentsLabel": "fino a 1000",
+      "whatsappIncluded": "200 WhatsApp inclusi al mese"
     },
     "premium": {
       "name": "Premium",
       "description": "Per aziende che vogliono entrare in nuovi mercati",
       "subDescription": "e ottimizzare la gestione dei resi.",
-      "shipmentsLabel": "fino a 10000"
+      "shipmentsLabel": "fino a 10000",
+      "whatsappIncluded": "300 WhatsApp inclusi al mese"
     },
     "pro": {
       "name": "Pro",
       "description": "Per aziende attive in più mercati,",
       "subDescription": "che vogliono offrire un'esperienza cliente completa.",
-      "shipmentsLabel": "illimitato"
+      "shipmentsLabel": "illimitato",
+      "whatsappIncluded": "500 WhatsApp inclusi al mese"
     }
   },
   "createQuote": {

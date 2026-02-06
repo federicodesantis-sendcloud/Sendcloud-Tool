@@ -332,25 +332,29 @@
       "name": "Lite",
       "description": "Für diejenigen, die einen E-Commerce verwalten",
       "subDescription": "und alle Sendungen an einem Ort zentralisieren möchten.",
-      "shipmentsLabel": "bis zu 400 Sendungen/Monat"
+      "shipmentsLabel": "bis zu 400 Sendungen/Monat",
+      "whatsappIncluded": "100 WhatsApp-Nachrichten pro Monat inklusive"
     },
     "growth": {
       "name": "Growth",
       "description": "Für wachsende E-Commerce-Unternehmen",
       "subDescription": "die Sendungen automatisieren und die Post-Purchase-Erfahrung verbessern möchten.",
-      "shipmentsLabel": "bis zu 1000"
+      "shipmentsLabel": "bis zu 1000",
+      "whatsappIncluded": "200 WhatsApp-Nachrichten pro Monat inklusive"
     },
     "premium": {
       "name": "Premium",
       "description": "Für Unternehmen, die neue Märkte betreten möchten",
       "subDescription": "und das Retourenmanagement optimieren möchten.",
-      "shipmentsLabel": "bis zu 10000"
+      "shipmentsLabel": "bis zu 10000",
+      "whatsappIncluded": "300 WhatsApp-Nachrichten pro Monat inklusive"
     },
     "pro": {
       "name": "Pro",
       "description": "Für Unternehmen, die in mehreren Märkten aktiv sind,",
       "subDescription": "die eine vollständige Kundenerfahrung bieten möchten.",
-      "shipmentsLabel": "unbegrenzt"
+      "shipmentsLabel": "unbegrenzt",
+      "whatsappIncluded": "500 WhatsApp-Nachrichten pro Monat inklusive"
     }
   },
   "createQuote": {

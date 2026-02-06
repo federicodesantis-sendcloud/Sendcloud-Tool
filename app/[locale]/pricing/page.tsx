@@ -32,6 +32,7 @@ export default function PricingPage() {
       shipmentsLabel: t('lite.shipmentsLabel'),
       description: t('lite.description'),
       subDescription: t('lite.subDescription'),
+      whatsappIncluded: t('lite.whatsappIncluded'),
       features: [
         "Store integration (up to 3)",
         "Carrier integration",
@@ -58,6 +59,7 @@ export default function PricingPage() {
       shipmentsLabel: t('growth.shipmentsLabel'),
       description: t('growth.description'),
       subDescription: t('growth.subDescription'),
+      whatsappIncluded: t('growth.whatsappIncluded'),
       features: ["Tracking page", "WhatsApp marketing", "Pack & Go"],
       additionalInfo: "In addition to Lite:",
       cta: "Contact us",
@@ -75,6 +77,7 @@ export default function PricingPage() {
       shipmentsLabel: t('premium.shipmentsLabel'),
       description: t('premium.description'),
       subDescription: t('premium.subDescription'),
+      whatsappIncluded: t('premium.whatsappIncluded'),
       features: ["Returns portal", "Tracking page analytics", "Advanced shipping analytics", "Complete branding"],
       additionalInfo: "In addition to Growth:",
       cta: "Contact us",
@@ -93,6 +96,7 @@ export default function PricingPage() {
       shipmentsLabel: t('pro.shipmentsLabel'),
       description: t('pro.description'),
       subDescription: t('pro.subDescription'),
+      whatsappIncluded: t('pro.whatsappIncluded'),
       features: [
         "International shipping partnerships",
         "Dynamic delivery options at checkout",
@@ -359,6 +363,9 @@ export default function PricingPage() {
                     <div className="flex justify-between text-xs text-white/60 mt-2">
                       <span>0</span>
                       <span>5.000</span>
+                    </div>
+                    <div className="mt-3 text-xs text-white/70">
+                      {getCurrentPlan().whatsappIncluded}
                     </div>
                   </div>
 

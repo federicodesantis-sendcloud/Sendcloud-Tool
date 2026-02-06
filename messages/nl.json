@@ -332,25 +332,29 @@
       "name": "Lite",
       "description": "Voor degenen die een e-commerce beheren",
       "subDescription": "en alle verzendingen op één plek willen centraliseren.",
-      "shipmentsLabel": "tot 400 verzendingen/maand"
+      "shipmentsLabel": "tot 400 verzendingen/maand",
+      "whatsappIncluded": "100 WhatsApp-berichten per maand inbegrepen"
     },
     "growth": {
       "name": "Growth",
       "description": "Voor groeiende e-commerce bedrijven",
       "subDescription": "die verzendingen willen automatiseren en de post-aankoop ervaring willen verbeteren.",
-      "shipmentsLabel": "tot 1000"
+      "shipmentsLabel": "tot 1000",
+      "whatsappIncluded": "200 WhatsApp-berichten per maand inbegrepen"
     },
     "premium": {
       "name": "Premium",
       "description": "Voor bedrijven die nieuwe markten willen betreden",
       "subDescription": "en retourenbeheer willen optimaliseren.",
-      "shipmentsLabel": "tot 10000"
+      "shipmentsLabel": "tot 10000",
+      "whatsappIncluded": "300 WhatsApp-berichten per maand inbegrepen"
     },
     "pro": {
       "name": "Pro",
       "description": "Voor bedrijven actief in meerdere markten,",
       "subDescription": "die een complete klantervaring willen bieden.",
-      "shipmentsLabel": "onbeperkt"
+      "shipmentsLabel": "onbeperkt",
+      "whatsappIncluded": "500 WhatsApp-berichten per maand inbegrepen"
     }
   },
   "createQuote": {

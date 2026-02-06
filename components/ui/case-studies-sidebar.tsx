@@ -249,7 +249,7 @@ export function CaseStudiesSidebar() {
             <div className="h-px bg-[#3db4d2]/30 my-2" />
             <SidebarMenu>
               <SidebarMenuItem>
-                <Collapsible className="w-full">
+                <Collapsible defaultOpen className="w-full">
                   <CollapsibleTrigger className="w-full">
                     <SidebarMenuButton
                       tooltip={t('resources')}
@@ -299,7 +299,7 @@ export function CaseStudiesSidebar() {
                 </Collapsible>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <Collapsible className="w-full">
+                <Collapsible defaultOpen className="w-full">
                   <CollapsibleTrigger className="w-full">
                     <SidebarMenuButton
                       tooltip={t('features')}

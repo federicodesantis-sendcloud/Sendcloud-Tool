@@ -277,8 +277,8 @@ export default function AugustoCaseStudy() {
               <div className="relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#3db4d2]/30 to-[#3db4d2]/10 rounded-xl blur-sm"></div>
                 <Image
-                  src="/images/augusto-results-new.png"
-                  alt="Risultati della campagna WhatsApp di Augusto Abbigliamento"
+                  src={getLocalizedImage("augusto-results-new.png", locale)}
+                  alt="Augusto Abbigliamento campaign results"
                   width={600}
                   height={400}
                   className="w-full rounded-lg shadow-lg relative"

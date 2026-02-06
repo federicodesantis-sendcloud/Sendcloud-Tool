@@ -290,8 +290,8 @@ export default function ColtelleriaStoreCaseStudy() {
               </div>
               <div>
                 <Image
-                  src="/images/coltelleria-results.png"
-                  alt="Risultati della campagna WhatsApp"
+                  src={getLocalizedImage("coltelleria-results.png", locale)}
+                  alt="Coltelleria Store campaign results"
                   width={600}
                   height={400}
                   className="w-full rounded-lg shadow-lg"

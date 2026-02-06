@@ -244,10 +244,10 @@ export default function ReviewCalculatorPage() {
       })
     }
 
-    if (objectives.customerLoyalty || objectives.secondPurchases) {
+    if (objectives.secondPurchases) {
       results.push({
         type: "revenue",
-        title: objectives.secondPurchases ? t('secondPurchasesTitle') : t('customerLoyaltyTitle'),
+        title: t('secondPurchasesTitle'),
         value: `€${couponSalesMonthly.toLocaleString()}`,
         subtitle: t('revenuePerMonth'),
         color: "green",
@@ -846,7 +846,7 @@ export default function ReviewCalculatorPage() {
               )}
 
               {/* ROI Analysis - Only show if revenue objectives are selected */}
-              {(objectives.customerLoyalty || objectives.secondPurchases) && (
+              {objectives.secondPurchases && (
                 <div className="max-w-5xl mx-auto mt-16">
                     <div className="bg-gradient-to-r from-blue-600/20 to-indigo-600/20 rounded-3xl p-8 border-2 border-blue-400/30">
                     <h2 className="text-3xl font-bold text-white text-center mb-12">{t('roiAnalysis')}</h2>

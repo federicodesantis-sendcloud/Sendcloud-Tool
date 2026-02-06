@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { Card } from "@/components/ui/card"
+import { Layers, ShieldCheck, Users } from "lucide-react"
 import { useTranslations, useLocale } from 'next-intl'
 
 export default function ColtelleriaStoreCaseStudy() {
@@ -309,19 +310,34 @@ export default function ColtelleriaStoreCaseStudy() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-[#0a1e4d] p-6 rounded-lg">
-                <h3 className="text-xl font-bold text-[#3db4d2] mb-4">{t('highCoverage')}</h3>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-10 w-10 rounded-full bg-[#3db4d2]/20 flex items-center justify-center">
+                    <Users className="h-5 w-5 text-[#3db4d2]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#3db4d2]">{t('highCoverage')}</h3>
+                </div>
                 <p className="text-white">
                   {t('highCoverageText')}
                 </p>
               </div>
               <div className="bg-[#0a1e4d] p-6 rounded-lg">
-                <h3 className="text-xl font-bold text-[#3db4d2] mb-4">{t('lowCompetition')}</h3>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-10 w-10 rounded-full bg-[#3db4d2]/20 flex items-center justify-center">
+                    <Layers className="h-5 w-5 text-[#3db4d2]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#3db4d2]">{t('lowCompetition')}</h3>
+                </div>
                 <p className="text-white">
                   {t('lowCompetitionText')}
                 </p>
               </div>
               <div className="bg-[#0a1e4d] p-6 rounded-lg">
-                <h3 className="text-xl font-bold text-[#3db4d2] mb-4">{t('highDeliverability')}</h3>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-10 w-10 rounded-full bg-[#3db4d2]/20 flex items-center justify-center">
+                    <ShieldCheck className="h-5 w-5 text-[#3db4d2]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#3db4d2]">{t('highDeliverability')}</h3>
+                </div>
                 <p className="text-white">
                   {t('highDeliverabilityText')}
                 </p>

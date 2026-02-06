@@ -19,10 +19,11 @@ import {
   Layers,
   Repeat,
 } from "lucide-react"
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 export function TrackingPageCaseStudy() {
   const t = useTranslations('trackingPageCaseStudy')
+  const locale = useLocale()
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isZooming, setIsZooming] = useState(false)
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 })
@@ -31,7 +32,7 @@ export function TrackingPageCaseStudy() {
 
   const slides = [
     {
-      image: "/images/tracking-page-alessi.png",
+      image: locale === "en" ? "/images/tracking-page-alessi-en.png" : "/images/tracking-page-alessi.png",
       title: "Alessi",
     },
     {
@@ -39,11 +40,11 @@ export function TrackingPageCaseStudy() {
       title: "Snack",
     },
     {
-      image: "/images/tracking-page-armixx.png",
+      image: locale === "en" ? "/images/tracking-page-armixx-en.png" : "/images/tracking-page-armixx.png",
       title: "Armixx",
     },
     {
-      image: "/images/tracking-page-biffi.png",
+      image: locale === "en" ? "/images/tracking-page-biffi-en.png" : "/images/tracking-page-biffi.png",
       title: "BIFFI Boutiques",
     },
     {

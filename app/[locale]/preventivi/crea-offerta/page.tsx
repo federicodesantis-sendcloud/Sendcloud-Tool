@@ -662,6 +662,12 @@ export default function CreateOfferPage() {
     background-color: #fff3cd;
     border: 1px solid #ffeaa7;
     color: #856404;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin: 12px 0;
+    font-weight: bold;
+    font-size: 13px;
+  }
   
   /* Shipping rates table */
   .shipping-rates-section {
@@ -731,12 +737,6 @@ export default function CreateOfferPage() {
   
   .shipping-rates-table tbody tr:nth-child(even):hover {
     background-color: #f5f9ff;
-  }
-    padding: 8px 12px;
-    border-radius: 5px;
-    margin: 12px 0;
-    font-weight: bold;
-    font-size: 13px;
   }
   
   /* Responsive */

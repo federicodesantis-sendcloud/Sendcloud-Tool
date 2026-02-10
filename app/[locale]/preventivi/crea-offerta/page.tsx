@@ -209,6 +209,10 @@ export default function CreateOfferPage() {
     showAnnual: false,
     perLabelFee: standardPlans.lite.perLabel.toFixed(2), // Valore iniziale basato su Lite mensile
     whatsappCost: "0.14",
+    customMonthlyFee: "",
+    customAnnualFee: "",
+    customPerLabelFee: "",
+    customWhatsappCost: "",
     clientName: "",
     clientEmail: "",
     whatsappNumber: "",
@@ -951,7 +955,34 @@ document.addEventListener('DOMContentLoaded', function() {
     <h2>${t('pricing')}</h2>
     
     ${
-      pricingValues.showMonthly || pricingValues.showAnnual
+      pricingValues.selectedPlan === "custom-monthly" || pricingValues.selectedPlan === "custom-yearly"
+        ? (() => {
+            const isMonthly = pricingValues.selectedPlan === "custom-monthly"
+            const fee = isMonthly ? pricingValues.customMonthlyFee : pricingValues.customAnnualFee
+            const perLabel = pricingValues.customPerLabelFee
+            const whatsappCost = pricingValues.customWhatsappCost
+            
+            if (!fee || !perLabel || !whatsappCost) return ""
+            
+            const displayPrice = isMonthly 
+              ? fee 
+              : (parseFloat(fee || "0") / 12).toFixed(2)
+            const displayLabel = isMonthly ? t('perMonth') : t('perMonth')
+            
+            return `
+    <div class="plan-name">${isMonthly ? t('customMonthly') : t('customYearly')}</div>
+    <div style="margin: 15px 0;">
+      <div class="pricing-highlight">€${displayPrice}${displayLabel}</div>
+    </div>
+    <div class="pricing-details">
+      <ul>
+        <li>${t('costPerLabelShort')}: <strong>€${parseFloat(perLabel).toFixed(2)}</strong></li>
+        <li>${t('whatsappCostPerMessage')}: <strong>€${parseFloat(whatsappCost).toFixed(2)}</strong></li>
+      </ul>
+    </div>
+    `
+          })()
+        : pricingValues.showMonthly || pricingValues.showAnnual
         ? `
     <div class="plan-name">${standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].name}</div>
     
@@ -1444,21 +1475,33 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   const handlePlanChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const plan = e.target.value as keyof typeof standardPlans
-    const planData = standardPlans[plan]
-    setPricingValues((prev) => {
-      // Se solo annuale è selezionato, usa perLabelAnnual
-      // Altrimenti usa perLabel mensile
-      const newPerLabelFee = (!prev.showMonthly && prev.showAnnual)
-        ? planData.perLabelAnnual.toFixed(2)
-        : planData.perLabel.toFixed(2)
-      return {
+    const plan = e.target.value
+    if (plan === "custom-monthly" || plan === "custom-yearly") {
+      // Per i piani custom, nascondi showMonthly e showAnnual
+      setPricingValues((prev) => ({
         ...prev,
         selectedPlan: plan,
-        perLabelFee: newPerLabelFee,
-      }
-    })
-    setSelectedFeatures(getDefaultFeatureIds(plan))
+        showMonthly: false,
+        showAnnual: false,
+      }))
+    } else {
+      // Per i piani standard, mantieni la logica esistente
+      const planKey = plan as keyof typeof standardPlans
+      const planData = standardPlans[planKey]
+      setPricingValues((prev) => {
+        // Se solo annuale è selezionato, usa perLabelAnnual
+        // Altrimenti usa perLabel mensile
+        const newPerLabelFee = (!prev.showMonthly && prev.showAnnual)
+          ? planData.perLabelAnnual.toFixed(2)
+          : planData.perLabel.toFixed(2)
+        return {
+          ...prev,
+          selectedPlan: plan,
+          perLabelFee: newPerLabelFee,
+        }
+      })
+      setSelectedFeatures(getDefaultFeatureIds(planKey))
+    }
   }
 
   const handleShowMonthlyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -1623,32 +1666,82 @@ document.addEventListener('DOMContentLoaded', function() {
                     <option value="growth">Growth</option>
                     <option value="premium">Premium</option>
                     <option value="pro">Pro</option>
+                    <option value="custom-monthly">{t('customMonthly')}</option>
+                    <option value="custom-yearly">{t('customYearly')}</option>
                   </select>
                 </div>
 
-                <div className="flex flex-col gap-3">
-                  <Label className="text-white">{t('showPricing')}</Label>
-                  
-                  <label className="flex items-center space-x-3 text-white cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={pricingValues.showMonthly}
-                      onChange={handleShowMonthlyChange}
-                      className="accent-[#3db4d2] h-4 w-4"
-                    />
-                    <span>{t('showMonthly')} (€{standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].monthly}/month)</span>
-                  </label>
+                {(pricingValues.selectedPlan !== "custom-monthly" && pricingValues.selectedPlan !== "custom-yearly") && (
+                  <div className="flex flex-col gap-3">
+                    <Label className="text-white">{t('showPricing')}</Label>
+                    
+                    <label className="flex items-center space-x-3 text-white cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={pricingValues.showMonthly}
+                        onChange={handleShowMonthlyChange}
+                        className="accent-[#3db4d2] h-4 w-4"
+                      />
+                      <span>{t('showMonthly')} (€{standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].monthly}/month)</span>
+                    </label>
 
-                  <label className="flex items-center space-x-3 text-white cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={pricingValues.showAnnual}
-                      onChange={handleShowAnnualChange}
-                      className="accent-[#3db4d2] h-4 w-4"
-                    />
-                    <span>{t('showAnnual')} (€{standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].annual}/year)</span>
-                  </label>
-                </div>
+                    <label className="flex items-center space-x-3 text-white cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={pricingValues.showAnnual}
+                        onChange={handleShowAnnualChange}
+                        className="accent-[#3db4d2] h-4 w-4"
+                      />
+                      <span>{t('showAnnual')} (€{standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].annual}/year)</span>
+                    </label>
+                  </div>
+                )}
+
+                {(pricingValues.selectedPlan === "custom-monthly" || pricingValues.selectedPlan === "custom-yearly") && (
+                  <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-2">
+                      <Label htmlFor={pricingValues.selectedPlan === "custom-monthly" ? "customMonthlyFee" : "customAnnualFee"} className="text-white">
+                        {pricingValues.selectedPlan === "custom-monthly" ? t('monthlyFee') : t('annualFee')}
+                      </Label>
+                      <Input
+                        id={pricingValues.selectedPlan === "custom-monthly" ? "customMonthlyFee" : "customAnnualFee"}
+                        type="number"
+                        step="0.01"
+                        placeholder={pricingValues.selectedPlan === "custom-monthly" ? "35.00" : "336.00"}
+                        value={pricingValues.selectedPlan === "custom-monthly" ? pricingValues.customMonthlyFee : pricingValues.customAnnualFee}
+                        onChange={(e) => handlePricingChange(e, pricingValues.selectedPlan === "custom-monthly" ? "customMonthlyFee" : "customAnnualFee")}
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <Label htmlFor="customPerLabelFee" className="text-white">
+                        {t('costPerLabel')}
+                      </Label>
+                      <Input
+                        id="customPerLabelFee"
+                        type="number"
+                        step="0.01"
+                        placeholder="0.10"
+                        value={pricingValues.customPerLabelFee}
+                        onChange={(e) => handlePricingChange(e, "customPerLabelFee")}
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <Label htmlFor="customWhatsappCost" className="text-white">
+                        {t('whatsappCostPerMessage')}
+                      </Label>
+                      <Input
+                        id="customWhatsappCost"
+                        type="number"
+                        step="0.01"
+                        placeholder="0.10"
+                        value={pricingValues.customWhatsappCost}
+                        onChange={(e) => handlePricingChange(e, "customWhatsappCost")}
+                      />
+                    </div>
+                  </div>
+                )}
 
                 {(pricingValues.showMonthly || pricingValues.showAnnual) ? (
                   <div className="flex flex-col gap-2">
@@ -1775,7 +1868,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div>
                   <p className="text-white/60 text-sm">{t('pricing')}</p>
                   <div className="text-white">
-                    {pricingValues.showMonthly && pricingValues.showAnnual ? (
+                    {pricingValues.selectedPlan === "custom-monthly" ? (
+                      <>
+                        <span className="font-semibold block">€{pricingValues.customMonthlyFee || "0"}/month</span>
+                        {pricingValues.customMonthlyFee && pricingValues.customPerLabelFee && pricingValues.customWhatsappCost && (
+                          <>
+                            <span className="block text-sm">+ €{pricingValues.customPerLabelFee}/label</span>
+                            <span className="block text-sm">+ €{pricingValues.customWhatsappCost}/WhatsApp message</span>
+                          </>
+                        )}
+                      </>
+                    ) : pricingValues.selectedPlan === "custom-yearly" ? (
+                      <>
+                        <span className="font-semibold block">€{pricingValues.customAnnualFee || "0"}/year</span>
+                        {pricingValues.customAnnualFee && pricingValues.customPerLabelFee && pricingValues.customWhatsappCost && (
+                          <>
+                            <span className="block text-sm">+ €{pricingValues.customPerLabelFee}/label</span>
+                            <span className="block text-sm">+ €{pricingValues.customWhatsappCost}/WhatsApp message</span>
+                          </>
+                        )}
+                      </>
+                    ) : pricingValues.showMonthly && pricingValues.showAnnual ? (
                       <>
                         <span className="font-semibold block">€{standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].monthly}/month</span>
                         <span className="font-semibold block">€{standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].annual}/year</span>

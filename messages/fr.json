@@ -386,6 +386,8 @@
     "collapseFeature": "Réduire",
     "pricingStructure": "Structure de Prix",
     "selectPlan": "Sélectionner le Plan",
+    "customMonthly": "Personnalisé Mensuel",
+    "customYearly": "Personnalisé Annuel",
     "showPricing": "Afficher les Prix",
     "showMonthly": "Afficher Mensuel",
     "showAnnual": "Afficher Annuel",

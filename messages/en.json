@@ -377,6 +377,8 @@
     "collapseFeature": "Collapse",
     "pricingStructure": "Pricing Structure",
     "selectPlan": "Select Plan",
+    "customMonthly": "Custom Monthly",
+    "customYearly": "Custom Yearly",
     "showPricing": "Show Pricing",
     "showMonthly": "Show Monthly",
     "showAnnual": "Show Annual",

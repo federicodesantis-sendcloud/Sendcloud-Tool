@@ -8,10 +8,57 @@ import { Switch } from "@/components/ui/switch"
 import { Slider } from "@/components/ui/slider"
 import { Input } from "@/components/ui/input"
 import { CaseStudiesSidebar } from "@/components/ui/case-studies-sidebar"
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
+
+// Pricing configuration by locale
+const pricingByLocale: Record<string, {
+  lite: { monthly: number; annual: number; perLabel: number; perLabelAnnual: number; whatsappPrice: number }
+  growth: { monthly: number; annual: number; perLabel: number; perLabelAnnual: number; whatsappPrice: number }
+  premium: { monthly: number; annual: number; perLabel: number; perLabelAnnual: number; whatsappPrice: number }
+  pro: { monthly: number; annual: number; perLabel: number; perLabelAnnual: number; whatsappPrice: number }
+}> = {
+  es: {
+    lite: { monthly: 32.5, annual: 26, perLabel: 0.11, perLabelAnnual: 0.10, whatsappPrice: 0.14 },
+    growth: { monthly: 99, annual: 79, perLabel: 0.10, perLabelAnnual: 0.09, whatsappPrice: 0.12 },
+    premium: { monthly: 195, annual: 155, perLabel: 0.09, perLabelAnnual: 0.08, whatsappPrice: 0.1 },
+    pro: { monthly: 799, annual: 639, perLabel: 0.07, perLabelAnnual: 0.07, whatsappPrice: 0.1 },
+  },
+  en: {
+    lite: { monthly: 33, annual: 26, perLabel: 0.11, perLabelAnnual: 0.10, whatsappPrice: 0.14 },
+    growth: { monthly: 99, annual: 79, perLabel: 0.10, perLabelAnnual: 0.09, whatsappPrice: 0.12 },
+    premium: { monthly: 195, annual: 155, perLabel: 0.09, perLabelAnnual: 0.08, whatsappPrice: 0.1 },
+    pro: { monthly: 799, annual: 639, perLabel: 0.07, perLabelAnnual: 0.07, whatsappPrice: 0.1 },
+  },
+  fr: {
+    lite: { monthly: 33, annual: 25, perLabel: 0.11, perLabelAnnual: 0.10, whatsappPrice: 0.14 },
+    growth: { monthly: 105, annual: 79, perLabel: 0.10, perLabelAnnual: 0.09, whatsappPrice: 0.12 },
+    premium: { monthly: 209, annual: 157, perLabel: 0.09, perLabelAnnual: 0.08, whatsappPrice: 0.1 },
+    pro: { monthly: 799, annual: 599, perLabel: 0.07, perLabelAnnual: 0.07, whatsappPrice: 0.1 },
+  },
+  nl: {
+    lite: { monthly: 33, annual: 26, perLabel: 0.11, perLabelAnnual: 0.10, whatsappPrice: 0.14 },
+    growth: { monthly: 99, annual: 79, perLabel: 0.10, perLabelAnnual: 0.09, whatsappPrice: 0.12 },
+    premium: { monthly: 195, annual: 155, perLabel: 0.09, perLabelAnnual: 0.08, whatsappPrice: 0.1 },
+    pro: { monthly: 799, annual: 639, perLabel: 0.07, perLabelAnnual: 0.07, whatsappPrice: 0.1 },
+  },
+  de: {
+    lite: { monthly: 32.5, annual: 26, perLabel: 0.11, perLabelAnnual: 0.10, whatsappPrice: 0.14 },
+    growth: { monthly: 99, annual: 79, perLabel: 0.10, perLabelAnnual: 0.09, whatsappPrice: 0.12 },
+    premium: { monthly: 199, annual: 155, perLabel: 0.09, perLabelAnnual: 0.08, whatsappPrice: 0.1 },
+    pro: { monthly: 799, annual: 639, perLabel: 0.07, perLabelAnnual: 0.07, whatsappPrice: 0.1 },
+  },
+  // Default prices for other locales (can be overridden later)
+  default: {
+    lite: { monthly: 35, annual: 28, perLabel: 0.11, perLabelAnnual: 0.10, whatsappPrice: 0.14 },
+    growth: { monthly: 99, annual: 79, perLabel: 0.10, perLabelAnnual: 0.09, whatsappPrice: 0.12 },
+    premium: { monthly: 199, annual: 159, perLabel: 0.09, perLabelAnnual: 0.08, whatsappPrice: 0.1 },
+    pro: { monthly: 799, annual: 639, perLabel: 0.07, perLabelAnnual: 0.06, whatsappPrice: 0.1 },
+  },
+}
 
 export default function PricingPage() {
   const t = useTranslations('pricing')
+  const locale = useLocale()
   const [shipments, setShipments] = useState(0)
   const [shipmentsInput, setShipmentsInput] = useState("0")
   const [whatsappMessages, setWhatsappMessages] = useState(0)
@@ -19,15 +66,18 @@ export default function PricingPage() {
   const [selectedPlan, setSelectedPlan] = useState("lite")
   const [isAnnual, setIsAnnual] = useState(false)
 
+  // Get pricing for current locale or use default
+  const pricing = pricingByLocale[locale] || pricingByLocale.default
+
   const plans = [
     {
       id: "lite",
       name: t('lite.name'),
-      price: 35,
-      annualPrice: 28,
-      pricePerLabel: 0.11,
-      pricePerLabelAnnual: 0.10,
-      whatsappPrice: 0.14,
+      price: pricing.lite.monthly,
+      annualPrice: pricing.lite.annual,
+      pricePerLabel: pricing.lite.perLabel,
+      pricePerLabelAnnual: pricing.lite.perLabelAnnual,
+      whatsappPrice: pricing.lite.whatsappPrice,
       maxShipments: 400,
       shipmentsLabel: t('lite.shipmentsLabel'),
       description: t('lite.description'),
@@ -50,11 +100,11 @@ export default function PricingPage() {
     {
       id: "growth",
       name: t('growth.name'),
-      price: 99,
-      annualPrice: 79,
-      pricePerLabel: 0.10,
-      pricePerLabelAnnual: 0.09,
-      whatsappPrice: 0.12,
+      price: pricing.growth.monthly,
+      annualPrice: pricing.growth.annual,
+      pricePerLabel: pricing.growth.perLabel,
+      pricePerLabelAnnual: pricing.growth.perLabelAnnual,
+      whatsappPrice: pricing.growth.whatsappPrice,
       maxShipments: 1000,
       shipmentsLabel: t('growth.shipmentsLabel'),
       description: t('growth.description'),
@@ -68,11 +118,11 @@ export default function PricingPage() {
     {
       id: "premium",
       name: t('premium.name'),
-      price: 199,
-      annualPrice: 159,
-      pricePerLabel: 0.09,
-      pricePerLabelAnnual: 0.08,
-      whatsappPrice: 0.1,
+      price: pricing.premium.monthly,
+      annualPrice: pricing.premium.annual,
+      pricePerLabel: pricing.premium.perLabel,
+      pricePerLabelAnnual: pricing.premium.perLabelAnnual,
+      whatsappPrice: pricing.premium.whatsappPrice,
       maxShipments: 10000,
       shipmentsLabel: t('premium.shipmentsLabel'),
       description: t('premium.description'),
@@ -87,11 +137,11 @@ export default function PricingPage() {
     {
       id: "pro",
       name: t('pro.name'),
-      price: 799,
-      annualPrice: 639,
-      pricePerLabel: 0.07,
-      pricePerLabelAnnual: 0.06,
-      whatsappPrice: 0.1,
+      price: pricing.pro.monthly,
+      annualPrice: pricing.pro.annual,
+      pricePerLabel: pricing.pro.perLabel,
+      pricePerLabelAnnual: pricing.pro.perLabelAnnual,
+      whatsappPrice: pricing.pro.whatsappPrice,
       maxShipments: 50000,
       shipmentsLabel: t('pro.shipmentsLabel'),
       description: t('pro.description'),

@@ -1743,66 +1743,70 @@ document.addEventListener('DOMContentLoaded', function() {
                   </div>
                 )}
 
-                {(pricingValues.showMonthly || pricingValues.showAnnual) ? (
-                  <div className="flex flex-col gap-2">
-                    <Label className="text-white">
-                      {t('costPerLabel')}
-                    </Label>
-                    <div className="bg-[#0c2a6a] border border-[#3db4d2]/30 rounded-lg p-3">
-                      {pricingValues.showMonthly && pricingValues.showAnnual ? (
-                        <div className="space-y-2">
-                          <div className="flex justify-between items-center">
-                            <span className="text-white/80 text-sm">Mensile:</span>
-                            <span className="text-white font-semibold">€{standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].perLabel.toFixed(2)}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-white/80 text-sm">Annuale:</span>
-                            <span className="text-white font-semibold">€{standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].perLabelAnnual.toFixed(2)}</span>
-                          </div>
+                {(pricingValues.selectedPlan !== "custom-monthly" && pricingValues.selectedPlan !== "custom-yearly") && (
+                  <>
+                    {(pricingValues.showMonthly || pricingValues.showAnnual) ? (
+                      <div className="flex flex-col gap-2">
+                        <Label className="text-white">
+                          {t('costPerLabel')}
+                        </Label>
+                        <div className="bg-[#0c2a6a] border border-[#3db4d2]/30 rounded-lg p-3">
+                          {pricingValues.showMonthly && pricingValues.showAnnual ? (
+                            <div className="space-y-2">
+                              <div className="flex justify-between items-center">
+                                <span className="text-white/80 text-sm">Mensile:</span>
+                                <span className="text-white font-semibold">€{standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].perLabel.toFixed(2)}</span>
+                              </div>
+                              <div className="flex justify-between items-center">
+                                <span className="text-white/80 text-sm">Annuale:</span>
+                                <span className="text-white font-semibold">€{standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].perLabelAnnual.toFixed(2)}</span>
+                              </div>
+                            </div>
+                          ) : pricingValues.showMonthly ? (
+                            <div className="flex justify-between items-center">
+                              <span className="text-white/80 text-sm">Mensile:</span>
+                              <span className="text-white font-semibold">€{standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].perLabel.toFixed(2)}</span>
+                            </div>
+                          ) : (
+                            <div className="flex justify-between items-center">
+                              <span className="text-white/80 text-sm">Annuale:</span>
+                              <span className="text-white font-semibold">€{standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].perLabelAnnual.toFixed(2)}</span>
+                            </div>
+                          )}
                         </div>
-                      ) : pricingValues.showMonthly ? (
-                        <div className="flex justify-between items-center">
-                          <span className="text-white/80 text-sm">Mensile:</span>
-                          <span className="text-white font-semibold">€{standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].perLabel.toFixed(2)}</span>
-                        </div>
-                      ) : (
-                        <div className="flex justify-between items-center">
-                          <span className="text-white/80 text-sm">Annuale:</span>
-                          <span className="text-white font-semibold">€{standardPlans[pricingValues.selectedPlan as keyof typeof standardPlans].perLabelAnnual.toFixed(2)}</span>
-                        </div>
-                      )}
-                    </div>
-                    <p className="text-xs text-white/60">Valore automatico basato sul piano selezionato</p>
-                  </div>
-                ) : (
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="perLabelFee" className="text-white">
-                      {t('costPerLabel')}
-                    </Label>
-                    <Input
-                      id="perLabelFee"
-                      type="number"
-                      step="0.01"
-                      placeholder="0.10"
-                      value={pricingValues.perLabelFee}
-                      onChange={(e) => handlePricingChange(e, "perLabelFee")}
-                    />
-                  </div>
-                )}
+                        <p className="text-xs text-white/60">Valore automatico basato sul piano selezionato</p>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col gap-2">
+                        <Label htmlFor="perLabelFee" className="text-white">
+                          {t('costPerLabel')}
+                        </Label>
+                        <Input
+                          id="perLabelFee"
+                          type="number"
+                          step="0.01"
+                          placeholder="0.10"
+                          value={pricingValues.perLabelFee}
+                          onChange={(e) => handlePricingChange(e, "perLabelFee")}
+                        />
+                      </div>
+                    )}
 
-                <div className="flex flex-col gap-2">
-                  <Label htmlFor="whatsappCost" className="text-white">
-                    {t('whatsappCostPerMessage')}
-                  </Label>
-                  <Input
-                    id="whatsappCost"
-                    type="number"
-                    step="0.01"
-                    placeholder="0.14"
-                    value={pricingValues.whatsappCost}
-                    onChange={(e) => handlePricingChange(e, "whatsappCost")}
-                  />
-                </div>
+                    <div className="flex flex-col gap-2">
+                      <Label htmlFor="whatsappCost" className="text-white">
+                        {t('whatsappCostPerMessage')}
+                      </Label>
+                      <Input
+                        id="whatsappCost"
+                        type="number"
+                        step="0.01"
+                        placeholder="0.14"
+                        value={pricingValues.whatsappCost}
+                        onChange={(e) => handlePricingChange(e, "whatsappCost")}
+                      />
+                    </div>
+                  </>
+                )}
 
                 <div className="flex flex-col gap-2 mt-4">
                   <Label htmlFor="shippingRates" className="text-white">

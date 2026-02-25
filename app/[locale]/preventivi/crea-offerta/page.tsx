@@ -25,25 +25,25 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import jsPDF from 'jspdf'
 import html2canvas from 'html2canvas'
 
-// Standard pricing plans from the pricing page
-const standardPlans = {
+// Standard pricing plans from the pricing page (base values)
+const standardPlansBase = {
   lite: {
     name: "Lite",
     monthly: 35,
     annual: 28 * 12,
-    perLabel: 0.11, // mensile: 0.11, annuale: 0.10
+    perLabel: 0.11,
     perLabelAnnual: 0.10,
-    whatsappIncluded: 100, // WhatsApp inclusi al mese
+    whatsappIncluded: 100,
   },
   growth: {
     name: "Growth",
     monthly: 99,
     annual: 79 * 12,
-    perLabel: 0.10, // mensile: 0.10, annuale: 0.09
+    perLabel: 0.10,
     perLabelAnnual: 0.09,
     whatsappIncluded: 200,
   },
@@ -51,7 +51,7 @@ const standardPlans = {
     name: "Premium",
     monthly: 199,
     annual: 159 * 12,
-    perLabel: 0.09, // mensile: 0.09, annuale: 0.08
+    perLabel: 0.09,
     perLabelAnnual: 0.08,
     whatsappIncluded: 300,
   },
@@ -59,15 +59,27 @@ const standardPlans = {
     name: "Pro",
     monthly: 799,
     annual: 639 * 12,
-    perLabel: 0.07, // mensile: 0.07, annuale: 0.06
+    perLabel: 0.07,
     perLabelAnnual: 0.06,
     whatsappIncluded: 500,
   },
 }
 
+// Spanish-specific overrides (Premium 195/month, annual 155*12)
+const standardPlansEs = {
+  ...standardPlansBase,
+  premium: {
+    ...standardPlansBase.premium,
+    monthly: 195,
+    annual: 155 * 12,
+  },
+}
+
 export default function CreateOfferPage() {
   const t = useTranslations('createQuote')
-  
+  const locale = useLocale()
+  const standardPlans = locale === 'es' ? standardPlansEs : standardPlansBase
+
   // Define the features with their texts and images
   const features = [
     {
@@ -1001,7 +1013,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="pricing-details">
           <ul>
           <li>${t('costPerLabelShort')}: <strong>€${plan.perLabel.toFixed(2)}</strong></li>
-          <li><strong>${t('whatsappIncludedMonthly', { count: plan.whatsappIncluded })}</strong></li>
+          ${locale !== 'es' ? `<li><strong>${t('whatsappIncludedMonthly', { count: plan.whatsappIncluded })}</strong></li>` : ''}
           </ul>
         </div>
       </div>
@@ -1012,7 +1024,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="pricing-details">
           <ul>
           <li>${t('costPerLabelShort')}: <strong>€${plan.perLabelAnnual.toFixed(2)}</strong></li>
-          <li><strong>${t('whatsappIncludedAnnual', { count: plan.whatsappIncluded * 12 })}</strong></li>
+          ${locale !== 'es' ? `<li><strong>${t('whatsappIncludedAnnual', { count: plan.whatsappIncluded * 12 })}</strong></li>` : ''}
           </ul>
         </div>
       </div>
@@ -1029,7 +1041,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="pricing-details">
       <ul>
         <li>${t('costPerLabelShort')}: <strong>€${plan.perLabel.toFixed(2)}</strong></li>
-        <li><strong>${t('whatsappIncludedMonthly', { count: plan.whatsappIncluded })}</strong> ${t('includedInSubscription')}</li>
+        ${locale !== 'es' ? `<li><strong>${t('whatsappIncludedMonthly', { count: plan.whatsappIncluded })}</strong> ${t('includedInSubscription')}</li>` : ''}
       </ul>
     </div>
     `
@@ -1045,7 +1057,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="pricing-details">
       <ul>
         <li>${t('costPerLabelShort')}: <strong>€${plan.perLabelAnnual.toFixed(2)}</strong></li>
-        <li><strong>${t('whatsappIncludedAnnual', { count: plan.whatsappIncluded * 12 })}</strong> ${t('includedInAnnualSubscription')}</li>
+        ${locale !== 'es' ? `<li><strong>${t('whatsappIncludedAnnual', { count: plan.whatsappIncluded * 12 })}</strong> ${t('includedInAnnualSubscription')}</li>` : ''}
       </ul>
     </div>
     `

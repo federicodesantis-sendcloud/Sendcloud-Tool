@@ -22,10 +22,11 @@ import {
   ExternalLink,
   Package,
 } from "lucide-react"
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 export default function ReviewCalculatorPage() {
   const t = useTranslations('reviewCalculator')
+  const locale = useLocale()
   const [verticalMarket, setVerticalMarket] = useState("Fashion")
   const [monthlyOrders, setMonthlyOrders] = useState(1000)
   const [showResults, setShowResults] = useState(false)
@@ -121,7 +122,7 @@ export default function ReviewCalculatorPage() {
   const totalMessagesMonthly = monthlyOrders * totalMessagesPerOrder
   const totalMessagesAnnual = totalMessagesMonthly * 12
 
-  const whatsappCostPerMessage = 0.1 // 0.10 euros per message
+  const whatsappCostPerMessage = locale === 'es' ? 0.12 : 0.1 // 0.12 €/message for Spanish, 0.10 € for others
   const whatsappCostMonthly = totalMessagesMonthly * whatsappCostPerMessage
   const whatsappCostAnnual = whatsappCostMonthly * 12
 

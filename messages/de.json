@@ -264,6 +264,7 @@
     "failedDeliveriesPerMonth": "fehlgeschlagene Lieferungen pro Monat",
     "reduction": "{rate}%",
     "proactiveNotifications": "Proaktive Lieferbenachrichtigungen reduzieren verpasste Lieferungen und Rücksendungen",
+    "deliveryIssuesExplanation": "~{count} Liefervorfälle geschätzt ({rate}% der Sendungen) → {reduction}% weniger mit WhatsApp",
     "secondPurchasesTitle": "Zweite Käufe",
     "revenuePerMonth": "Umsatz pro Monat",
     "couponConversions": "{count} Coupon-Konversionen",

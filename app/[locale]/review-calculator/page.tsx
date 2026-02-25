@@ -130,9 +130,11 @@ export default function ReviewCalculatorPage() {
   const supportReductionPercentage = 35 // 35% reduction in support requests
   const supportRequestsReduced = Math.round((monthlyOrders * supportReductionPercentage) / 100)
 
-  // Delivery incidents reduction calculation (out for delivery messages reduce failed deliveries)
-  const deliveryIncidentsReductionPercentage = 25 // 25% reduction in failed deliveries/returns
-  const failedDeliveriesReduced = Math.round((monthlyOrders * deliveryIncidentsReductionPercentage) / 100)
+  // Delivery incidents: first estimate issues from shipments (industry ~2% failed first delivery/returns), then apply reduction
+  const deliveryIssuesRate = 0.02 // ~2% of shipments typically have delivery issues (failed attempt, return)
+  const deliveryIncidentsReductionPercentage = 25 // 25% reduction in those issues with WhatsApp tracking
+  const estimatedDeliveryIssues = Math.round(monthlyOrders * deliveryIssuesRate)
+  const failedDeliveriesReduced = Math.round(estimatedDeliveryIssues * deliveryIncidentsReductionPercentage / 100)
 
   // Sales conversions from coupons
   const couponConversionsMonthly = Math.round((monthlyOrders * currentVertical.coupon) / 100)
@@ -239,6 +241,11 @@ export default function ReviewCalculatorPage() {
         details: {
           rate: t('reduction', { rate: deliveryIncidentsReductionPercentage }),
           description: t('proactiveNotifications'),
+          explanation: t('deliveryIssuesExplanation', {
+            count: estimatedDeliveryIssues,
+            rate: Math.round(deliveryIssuesRate * 100),
+            reduction: deliveryIncidentsReductionPercentage,
+          }),
         },
       })
     }
@@ -827,6 +834,11 @@ export default function ReviewCalculatorPage() {
                                 <strong>{result.details.rate}</strong>
                               </div>
                               <div className={`text-sm ${colorClasses.details}`}>{result.details.description}</div>
+                              {'explanation' in result.details && result.details.explanation && (
+                                <div className={`text-sm ${colorClasses.details} mt-3 pt-3 border-t border-white/10`}>
+                                  {result.details.explanation}
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>

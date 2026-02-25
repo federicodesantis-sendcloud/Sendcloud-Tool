@@ -264,6 +264,7 @@
     "failedDeliveriesPerMonth": "mislukte leveringen per maand",
     "reduction": "{rate}%",
     "proactiveNotifications": "Proactieve verzendmeldingen verminderen gemiste leveringen en retouren",
+    "deliveryIssuesExplanation": "~{count} verzendincidenten geschat ({rate}% van zendingen) → {reduction}% minder met WhatsApp",
     "secondPurchasesTitle": "Tweede Aankopen",
     "revenuePerMonth": "omzet per maand",
     "couponConversions": "{count} coupon conversies",

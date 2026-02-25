@@ -717,6 +717,7 @@ export default function ReviewCalculatorPage() {
                         {t('messageOf', { current: currentMessageIndex + 1, total: recommendedMessages.length })}
                       </p>
                       <p className="text-white/50 text-sm mt-2">{recommendedMessages[currentMessageIndex]?.name}</p>
+                      <p className="text-[#3DB4D2] font-semibold text-sm mt-4">{t('freeTrial14Days')}</p>
                     </div>
                   </div>
 

@@ -245,6 +245,7 @@
     "previous": "Previous",
     "next": "Next",
     "messageOf": "Message {current} of {total}",
+    "freeTrial14Days": "14-day free trial",
     "monthlyInvestment": "Monthly Investment",
     "forMessages": "for {count} WhatsApp Business messages",
     "perMessage": "€0.10 per message • {count} messages per order",

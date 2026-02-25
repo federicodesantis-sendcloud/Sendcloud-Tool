@@ -65,9 +65,14 @@ const standardPlansBase = {
   },
 }
 
-// Spanish-specific overrides (Premium 195/month, annual 155*12)
+// Spanish-specific overrides (Lite 32.50/month, Premium 195/month)
 const standardPlansEs = {
   ...standardPlansBase,
+  lite: {
+    ...standardPlansBase.lite,
+    monthly: 32.5,
+    annual: 26 * 12,
+  },
   premium: {
     ...standardPlansBase.premium,
     monthly: 195,

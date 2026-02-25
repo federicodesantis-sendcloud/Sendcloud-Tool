@@ -740,7 +740,7 @@ export default function ReviewCalculatorPage() {
                               {t('forMessages', { count: totalMessagesMonthly.toLocaleString() })}
                             </div>
                             <div className="text-xl text-white/80">
-                              {t('perMessage', { count: totalMessagesPerOrder })}
+                              {t('perMessage', { count: totalMessagesPerOrder, price: whatsappCostPerMessage.toLocaleString(locale === 'es' ? 'es-ES' : 'en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) })}
                             </div>
                           </div>
                         </div>

@@ -257,7 +257,7 @@
     "freeTrial14Days": "14 dagen gratis proberen",
     "monthlyInvestment": "Maandelijkse Investering",
     "forMessages": "voor {count} WhatsApp Business-berichten",
-    "perMessage": "€0,10 per bericht • {count} berichten per bestelling",
+    "perMessage": "€{price} per bericht • {count} berichten per bestelling",
     "expectedBusinessResults": "Verwachte Bedrijfsresultaten",
     "projectedOutcomes": "Verwachte resultaten op basis van geselecteerde doelstellingen",
     "deliveryIncidentsTitle": "Verzendincidenten",

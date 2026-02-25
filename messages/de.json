@@ -257,7 +257,7 @@
     "freeTrial14Days": "14 Tage kostenlose Testversion",
     "monthlyInvestment": "Monatliche Investition",
     "forMessages": "für {count} WhatsApp Business-Nachrichten",
-    "perMessage": "€0,10 pro Nachricht • {count} Nachrichten pro Bestellung",
+    "perMessage": "€{price} pro Nachricht • {count} Nachrichten pro Bestellung",
     "expectedBusinessResults": "Erwartete Geschäftsergebnisse",
     "projectedOutcomes": "Projizierte Ergebnisse basierend auf ausgewählten Zielen",
     "deliveryIncidentsTitle": "Liefervorfälle",

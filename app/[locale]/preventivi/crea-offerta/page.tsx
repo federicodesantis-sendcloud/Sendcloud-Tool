@@ -975,17 +975,18 @@ document.addEventListener('DOMContentLoaded', function() {
       pricingValues.selectedPlan === "custom-monthly" || pricingValues.selectedPlan === "custom-yearly"
         ? (() => {
             const isMonthly = pricingValues.selectedPlan === "custom-monthly"
-            const fee = isMonthly ? pricingValues.customMonthlyFee : pricingValues.customAnnualFee
-            const perLabel = pricingValues.customPerLabelFee
-            const whatsappCost = pricingValues.customWhatsappCost
-            
-            if (!fee || !perLabel || !whatsappCost) return ""
-            
-            const displayPrice = isMonthly 
-              ? fee 
-              : (parseFloat(fee || "0") / 12).toFixed(2)
-            const displayLabel = isMonthly ? t('perMonth') : t('perMonth')
-            
+            const feeRaw = isMonthly ? pricingValues.customMonthlyFee : pricingValues.customAnnualFee
+            const perLabelRaw = pricingValues.customPerLabelFee
+            const whatsappCostRaw = pricingValues.customWhatsappCost
+            const parseNum = (v: string) => parseFloat(String(v || "0").trim().replace(",", ".")) || 0
+            const feeNum = parseNum(feeRaw)
+            const perLabelNum = parseNum(perLabelRaw)
+            const whatsappNum = parseNum(whatsappCostRaw)
+            if (feeNum <= 0) return ""
+            const displayPrice = isMonthly
+              ? feeNum.toFixed(2)
+              : (feeNum / 12).toFixed(2)
+            const displayLabel = t('perMonth')
             return `
     <div class="plan-name">${isMonthly ? t('customMonthly') : t('customYearly')}</div>
     <div style="margin: 15px 0;">
@@ -993,8 +994,8 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div class="pricing-details">
       <ul>
-        <li>${t('costPerLabelShort')}: <strong>€${parseFloat(perLabel).toFixed(2)}</strong></li>
-        <li>${t('whatsappCostPerMessage')}: <strong>€${parseFloat(whatsappCost).toFixed(2)}</strong></li>
+        <li>${t('costPerLabelShort')}: <strong>€${perLabelNum.toFixed(2)}</strong></li>
+        <li>${t('whatsappCostPerMessage')}: <strong>€${whatsappNum.toFixed(2)}</strong></li>
       </ul>
     </div>
     `

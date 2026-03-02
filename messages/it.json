@@ -328,6 +328,7 @@
     "contactSalesTeam": "Contatta il nostro team vendite",
     "unlimited": "Illimitato",
     "planAllowsUpTo": "Il piano {plan} consente fino a {max} spedizioni al mese.",
+    "whatsappIncludedAnnual": "{count} WhatsApp inclusi all'anno",
     "lite": {
       "name": "Lite",
       "description": "Per chi gestisce un e-commerce",
@@ -410,7 +411,7 @@
     "perMonth": "/mese",
     "costPerLabelShort": "Costo per etichetta",
     "whatsappIncludedMonthly": "{count} WhatsApp inclusi al mese",
-    "whatsappIncludedAnnual": "{count} WhatsApp inclusi",
+    "whatsappIncludedAnnual": "{count} WhatsApp inclusi all'anno",
     "includedInSubscription": "nell'abbonamento",
     "includedInAnnualSubscription": "nell'abbonamento annuale",
     "savings": "Risparmi {rate}%",

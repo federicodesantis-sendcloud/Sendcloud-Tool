@@ -80,6 +80,14 @@ const standardPlansEs = {
   },
 }
 
+// WhatsApp inclusi nei piani annuali (solo versione italiana)
+const whatsappAnnualCountIt: Record<string, number> = {
+  lite: 1500,
+  growth: 3000,
+  premium: 4500,
+  pro: 7500,
+}
+
 export default function CreateOfferPage() {
   const t = useTranslations('createQuote')
   const locale = useLocale()
@@ -1030,7 +1038,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="pricing-details">
           <ul>
           <li>${t('costPerLabelShort')}: <strong>€${plan.perLabelAnnual.toFixed(2)}</strong></li>
-          ${locale !== 'es' ? `<li><strong>${t('whatsappIncludedAnnual', { count: plan.whatsappIncluded * 12 })}</strong></li>` : ''}
+          ${locale !== 'es' ? `<li><strong>${t('whatsappIncludedAnnual', { count: locale === 'it' ? (whatsappAnnualCountIt[pricingValues.selectedPlan] ?? plan.whatsappIncluded * 12) : plan.whatsappIncluded * 12 })}</strong></li>` : ''}
           </ul>
         </div>
       </div>
@@ -1063,7 +1071,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="pricing-details">
       <ul>
         <li>${t('costPerLabelShort')}: <strong>€${plan.perLabelAnnual.toFixed(2)}</strong></li>
-        ${locale !== 'es' ? `<li><strong>${t('whatsappIncludedAnnual', { count: plan.whatsappIncluded * 12 })}</strong> ${t('includedInAnnualSubscription')}</li>` : ''}
+        ${locale !== 'es' ? `<li><strong>${t('whatsappIncludedAnnual', { count: locale === 'it' ? (whatsappAnnualCountIt[pricingValues.selectedPlan] ?? plan.whatsappIncluded * 12) : plan.whatsappIncluded * 12 })}</strong> ${t('includedInAnnualSubscription')}</li>` : ''}
       </ul>
     </div>
     `

@@ -56,6 +56,14 @@ const pricingByLocale: Record<string, {
   },
 }
 
+// WhatsApp inclusi nei piani annuali (solo versione italiana)
+const itAnnualWhatsapp: Record<string, number> = {
+  lite: 1500,
+  growth: 3000,
+  premium: 4500,
+  pro: 7500,
+}
+
 export default function PricingPage() {
   const t = useTranslations('pricing')
   const locale = useLocale()
@@ -415,7 +423,9 @@ export default function PricingPage() {
                       <span>5.000</span>
                     </div>
                     <div className="mt-3 text-xs text-white/70">
-                      {getCurrentPlan().whatsappIncluded}
+                      {locale === 'it' && isAnnual
+                        ? t('whatsappIncludedAnnual', { count: itAnnualWhatsapp[selectedPlan] ?? 0 })
+                        : getCurrentPlan().whatsappIncluded}
                     </div>
                   </div>
 
